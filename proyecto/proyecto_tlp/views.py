@@ -9,4 +9,4 @@ def home(request):
         "title" : title,
     }
 
-    return render(request, 'proyecto_tlp/base.html',data)
+    return render(request, 'proyecto_tlp/produccion.html',data)
