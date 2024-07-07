@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
 from django.utils import timezone
 from .forms import RegistroProduccionForm
 from .models import RegistroProduccion, Producto
@@ -12,7 +13,12 @@ def home(request):
     }
     return render(request, 'proyecto_tlp/home.html', data)
 
-# @login_required
+def exit(request):
+    logout(request)
+    return redirect('home')
+
+
+@login_required
 def registrar_produccion(request):
     if request.method == 'POST':
         form = RegistroProduccionForm(request.POST)

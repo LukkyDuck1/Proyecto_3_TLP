@@ -4,7 +4,15 @@
 
 {% block content %}
 <h1>Bienvenido a ENC</h1>
+
+{% if request.user.is_authenticated %}
 <p>Seleccione una acción:</p>
 <a href="{% url 'registrar_produccion' %}" class="btn btn-primary">Registrar Producción</a>
-<a href="{% url 'listar_produccion' %}" class="btn btn-secondary">Listar Producción</a>
+<a href="{% url 'listar_produccion' %}" class="btn btn-secondary">Ver mi Producción</a>
+
+{% else %}
+<h4>Recuerde iniciar sesion</h4>
+{% endif %}
+
+
 {% endblock %}
