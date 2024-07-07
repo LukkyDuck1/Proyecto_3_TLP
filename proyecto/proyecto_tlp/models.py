@@ -1,13 +1,15 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-class Producto(models.Model):
-    codigo = models.CharField(max_length=10, unique=True)
-    nombre = models.CharField(max_length=100)
-
 class Planta(models.Model):
     codigo = models.CharField(max_length=10, unique=True)
     nombre = models.CharField(max_length=100)
+
+class Producto(models.Model):
+    codigo = models.CharField(max_length=10, unique=True)
+    nombre = models.CharField(max_length=100)
+    planta = models.ForeignKey(Planta, on_delete=models.CASCADE, related_name='productos', null=True, blank=True)
+
 
 class RegistroProduccion(models.Model):
     producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
