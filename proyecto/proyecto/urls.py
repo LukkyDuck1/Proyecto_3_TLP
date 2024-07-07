@@ -21,7 +21,7 @@ from proyecto_tlp import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('home/',views.home, name="Home"),
+    path('home/',views.home, name="home"),
     path('api/', include('rest.urls')),
     path('registrar/', views.registrar_produccion, name='registrar_produccion'),
     path('modificar/<int:pk>/', views.modificar_produccion, name='modificar_produccion'),

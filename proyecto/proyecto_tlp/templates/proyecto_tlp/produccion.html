@@ -21,6 +21,9 @@
     <option value="AVG">AVG</option>
   </select>
   <div class="mb-3">
+    <input type="number" name="p´lanta" class="form-control" id="planta" min="0" placeholder="Planta">
+  </div>
+  <div class="mb-3">
     <input type="number" name="cantidad" class="form-control" id="litro" min="0" placeholder="Litros de combustible">
   </div>
   <div class="mb-3">
@@ -38,13 +41,14 @@
   <div class="mb-3">
     <input type="text" name="operador"class="form-control" id="operador" placeholder="Nombre operador">
   </div>
-  <div class="mb-3 form-check">
-    <input type="checkbox" class="form-check-input" id="check1">
-    <label class="form-check-label" for="exampleCheck1">Leer</label>
+  <div class="mb-3">
+    <input type="text" name="modificado_por"class="form-control" id="modificado_por" placeholder="Nombre operador modificador">
+  </div>
+  <div class="mb-3">
+    <input type="time" name="fecha_modificacion"class="form-control" id="fecha_modificacion" placeholder="fecha_modificacion">
   </div>
   <button type="submit" class="btn btn-primary">Enviar</button>
 </form>
-
 
 {% endblock %}
 
