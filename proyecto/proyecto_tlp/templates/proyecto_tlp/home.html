@@ -1,0 +1,10 @@
+{% extends 'proyecto_tlp/base.html' %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+<h1>Bienvenido a ENC</h1>
+<p>Seleccione una acción:</p>
+<a href="{% url 'registrar_produccion' %}" class="btn btn-primary">Registrar Producción</a>
+<a href="{% url 'listar_produccion' %}" class="btn btn-secondary">Listar Producción</a>
+{% endblock %}

@@ -1,24 +1,16 @@
 {% extends 'proyecto_tlp/base.html' %}
 
-{% block title %}Produccion{% endblock %}
+{% block title %}Registrar Producción{% endblock %}
 
-{% block 1 %}
-
-{% endblock %}
-
-{% block 2 %}
-
+{% block content %}
+<h2>Registrar Producción</h2>
 <form method="post">
-  {%csrf_token%}
-  <select name="producto"class="form-select" aria-label="Default select example">
-    <option selected>Código combustible</option>
-    <option value="G93">G93</option>
-    <option value="G95">G95</option>
-    <option value="G97">G97</option>
-    <option value="DIE">DIE</option>
-    <option value="DIP">DIP</option>
-    <option value="JA1">JA1</option>
-    <option value="AVG">AVG</option>
+  {% csrf_token %}
+  <select name="producto" class="form-select" aria-label="Default select example">
+    <option selected disabled>Código combustible</option>
+    {% for producto in productos %}
+      <option value="{{ producto.id }}">{{ producto.nombre }} ({{ producto.codigo }})</option>
+    {% endfor %}
   </select>
   <div class="mb-3">
     <input type="number" name="cantidad" class="form-control" id="litro" min="0" placeholder="Litros de combustible">
@@ -27,27 +19,14 @@
     <input type="date" name="fecha_produccion" class="form-control" id="fecha" placeholder="Fecha">
   </div>
   <select name="turno" class="form-select" aria-label="Lista turnos">
-    <option selected>Turno</option>
+    <option selected disabled>Turno</option>
     <option value="AM">AM</option>
     <option value="PM">PM</option>
     <option value="MM">MM</option>
   </select>
   <div class="mb-3">
-    <input type="time" name="hora_registro"class="form-control" id="hora" placeholder="Hora registro">
-  </div>
-  <div class="mb-3">
-    <input type="text" name="operador"class="form-control" id="operador" placeholder="Nombre operador">
-  </div>
-  <div class="mb-3 form-check">
-    <input type="checkbox" class="form-check-input" id="check1">
-    <label class="form-check-label" for="exampleCheck1">Leer</label>
+    <input type="time" name="hora_registro" class="form-control" id="hora" placeholder="Hora registro">
   </div>
   <button type="submit" class="btn btn-primary">Enviar</button>
 </form>
-
-
-{% endblock %}
-
-{% block 3 %}
-
 {% endblock %}

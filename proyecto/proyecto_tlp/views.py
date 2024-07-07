@@ -2,27 +2,30 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from .forms import RegistroProduccionForm
-from .models import RegistroProduccion
+from .models import RegistroProduccion, Producto
 
 
 def home(request):
     title = "Inicio"
-
     data = {
-        "title" : title,
+        "title": title,
     }
+    return render(request, 'proyecto_tlp/home.html', data)
 
-    return render(request, 'proyecto_tlp/produccion.html',data)
-@login_required
+# @login_required
 def registrar_produccion(request):
     if request.method == 'POST':
         form = RegistroProduccionForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('home') # Redirecciona a la vista home, se puede cambiar
+            registro = form.save(commit=False)
+            registro.operador = request.user
+            registro.save()
+            return redirect('home')
     else:
         form = RegistroProduccionForm()
-    return render(request, 'proyecto_tlp/registro_produccion.html', {'form': form})
+    productos = Producto.objects.all()
+    print(productos)  # Verificar los productos en la consola del servidor
+    return render(request, 'proyecto_tlp/produccion.html', {'form': form, 'productos': productos})
 
 @login_required
 def modificar_produccion(request, pk):
