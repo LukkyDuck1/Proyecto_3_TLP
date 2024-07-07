@@ -17,6 +17,8 @@ class RegistroProduccion(models.Model):
     turno = models.CharField(max_length= 2, choices=(('AM', 'Mañana'), ('PM', 'Tarde'), ('MM', 'Noche')))
     hora_registro = models.DateTimeField(auto_now_add=True)
     operador = models.ForeignKey(User, on_delete=models.CASCADE)
+    modificado_por = models.ForeignKey(User, on_delete=models.CASCADE, related_name='modificador', null=True, blank=True)
+    fecha_modificacion = models.DateTimeField(null=True, blank=True)
     
 
     
