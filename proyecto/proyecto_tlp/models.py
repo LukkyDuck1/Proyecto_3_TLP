@@ -5,11 +5,16 @@ class Planta(models.Model):
     codigo = models.CharField(max_length=10, unique=True)
     nombre = models.CharField(max_length=100)
 
+    def __str__(self):
+        return f"{self.nombre} ({self.codigo})"
+
 class Producto(models.Model):
     codigo = models.CharField(max_length=10, unique=True)
     nombre = models.CharField(max_length=100)
     planta = models.ForeignKey(Planta, on_delete=models.CASCADE, related_name='productos', null=True, blank=True)
 
+    def __str__(self):
+        return f"{self.nombre} ({self.codigo})"
 
 class RegistroProduccion(models.Model):
     producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
