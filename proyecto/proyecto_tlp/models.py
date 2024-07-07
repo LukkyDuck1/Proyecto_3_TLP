@@ -26,6 +26,9 @@ class RegistroProduccion(models.Model):
     operador = models.ForeignKey(User, on_delete=models.CASCADE)
     modificado_por = models.ForeignKey(User, on_delete=models.CASCADE, related_name='modificador', null=True, blank=True)
     fecha_modificacion = models.DateTimeField(null=True, blank=True)
+    anulado = models.BooleanField(default=False)
+    anulado_por = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name='anulador', blank=True)
+    fecha_anulacion = models.DateTimeField(null=True, blank=True)
     
 
     
