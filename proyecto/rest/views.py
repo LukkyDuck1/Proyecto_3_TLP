@@ -15,6 +15,19 @@ class RegistroProduccionViewSet(viewsets.ModelViewSet):
     serializer_class = RegistroSerializer
     permission_classes = [permissions.IsAuthenticated]
 
+    # http://127.0.0.1:8000/api/registro-produccion/?year=2024&month=7
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        year = self.request.query_params.get('year')
+        month = self.request.query_params.get('month')
+        
+        if year is not None:
+            queryset = queryset.filter(fecha_produccion__year=year)
+        if month is not None:
+            queryset = queryset.filter(fecha_produccion__month=month)
+        
+        return queryset    
+
 class ProductoViewSet(viewsets.ModelViewSet):
     queryset = Producto.objects.all()
     serializer_class = ProductoSerializer
