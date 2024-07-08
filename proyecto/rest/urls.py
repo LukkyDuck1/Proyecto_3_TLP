@@ -2,6 +2,8 @@ from django.urls import include, path
 from rest_framework import routers
 from .views import RegistroProduccionViewSet, ProductoViewSet, PlantaViewSet, ProduccionTotalListView
 
+
+#Aplicamos los routers
 router = routers.DefaultRouter()
 router.register(r'registro-produccion', RegistroProduccionViewSet)
 router.register(r'productos', ProductoViewSet)

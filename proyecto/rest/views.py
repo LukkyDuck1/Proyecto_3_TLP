@@ -16,6 +16,7 @@ class RegistroProduccionViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
     # http://127.0.0.1:8000/api/registro-produccion/?year=2024&month=7
+    #Aplicar filtro de año y mes para solicitud
     def get_queryset(self):
         queryset = super().get_queryset()
         year = self.request.query_params.get('year')
@@ -38,7 +39,7 @@ class PlantaViewSet(viewsets.ModelViewSet):
     serializer_class = PlantaSerializer
     permission_classes = [permissions.IsAuthenticated]
 
-
+#Devuelve la sum de los registros
 class ProduccionTotalListView(APIView):
     permission_classes = [IsAuthenticated]
 
