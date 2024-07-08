@@ -4,6 +4,8 @@ from django.contrib.auth import logout
 from django.utils import timezone
 from .forms import RegistroProduccionForm
 from .models import RegistroProduccion, Producto
+from .slack import enviar_slack
+import requests
 
 
 def home(request):
@@ -20,12 +22,17 @@ def exit(request):
 
 @login_required
 def registrar_produccion(request):
+    
     if request.method == 'POST':
         form = RegistroProduccionForm(request.POST)
         if form.is_valid():
             registro = form.save(commit=False)
             registro.operador = request.user
+            
             registro.save()
+            #Por desconocimiento en autenticacion para api (consideramos que no era solucion un AllowAny ya que perdia la caracteristica de que solo un usuario autenticado podria usar la api)
+            mensaje=str(registro.fecha_produccion)+" | " +str(registro.hora_registro)+" | " +str(registro.planta)+"- Nuevo registro de produccion -"+str(registro.producto)+" | " +str(registro.cantidad) +"|Total almacenado:"+str(requests.get('http://127.0.0.1:8000/api/registro-produccion/'))
+            enviar_slack(mensaje)
             return redirect('home')
     else:
         form = RegistroProduccionForm()

@@ -124,5 +124,12 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+#Para que el login y el logout lleven al /
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
+
+##Se añade token de slack
+
+SLACK_TOKEN = 'xoxb-7383956242357-7372314796951-hcstzD6HfMEbUW2hgtpYTAtM'
+SLACK_CHANNEL = 'producttraker' 
