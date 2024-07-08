@@ -1,46 +1,43 @@
 {% extends 'proyecto_tlp/base.html' %}
 
-{% block title %}Inicio{% endblock %}
+{% block title %}Listar Producción{% endblock %}
 
 {% block content %}
 <h1>Bienvenido a ENC</h1>
 
 {% if request.user.is_authenticated %}
-<p>Tu produccion registrada es:</p>
+<p>Tu producción registrada es:</p>
 <table class="table">
     <thead>
       <tr>
         <th scope="col">#</th>
-
-        
         <th scope="col">Código</th>
         <th scope="col">Litros</th>
         <th scope="col">Fecha</th>
         <th scope="col">Turno</th>
         <th scope="col">Hora</th>
-
-
+        <th scope="col">Acciones</th>
       </tr>
     </thead>
     <tbody>
-        
-        {%for registro in registros%}
+        {% for registro in registros %}
             <tr>
                 <th scope="row">{{ forloop.counter }}</th>
-                <td>{{registro.producto}}</td>
-                <td>{{registro.cantidad}}</td>
-                <td>{{registro.fecha_produccion}}</td>
-                <td>{{registro.turno}}</td>
-                <td>{{registro.hora_registro}}</td>
+                <td>{{ registro.producto.nombre }}</td>
+                <td>{{ registro.cantidad }}</td>
+                <td>{{ registro.fecha_produccion }}</td>
+                <td>{{ registro.turno }}</td>
+                <td>{{ registro.hora_registro }}</td>
+                <td>
+                    <a href="{% url 'modificar_produccion' registro.id %}" class="btn btn-warning">Modificar</a>
+                </td>
             </tr>
         {% endfor %}
-
     </tbody>
-  </table>
+</table>
 
 {% else %}
-<h4>Recuerde iniciar sesion</h4>
+<h4>Recuerde iniciar sesión</h4>
 {% endif %}
-
 
 {% endblock %}

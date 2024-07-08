@@ -1,16 +1,12 @@
 {% extends 'proyecto_tlp/base.html' %}
 
-{% block title %}Inicio{% endblock %}
+{% block title %}Modificar Producción{% endblock %}
 
 {% block content %}
-<h1>Bienvenido a ENC</h1>
-
-{% if request.user.is_authenticated %}
-<p>Seleccione una acción:</p>
-
-{% else %}
-<h4>Recuerde iniciar sesion</h4>
-{% endif %}
-
-
+<h2>Modificar Producción</h2>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+</form>
 {% endblock %}
