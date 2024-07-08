@@ -1,0 +1,16 @@
+{% extends 'proyecto_tlp/base.html' %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+<h1>Bienvenido a ENC</h1>
+
+{% if request.user.is_authenticated %}
+<p>Seleccione una acción:</p>
+
+{% else %}
+<h4>Recuerde iniciar sesion</h4>
+{% endif %}
+
+
+{% endblock %}
